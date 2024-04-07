@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.a-center {
+  align-items: center;
+}
+
+.a-start {
+  align-items: flex-start;
+}
+
+.a-end {
+  align-items: flex-end;
+}
+
+.j-center {
+  justify-content: center;
+}
+
+.j-s__between {
+  justify-content: space-between;
+}
+
+.j-s__around {
+  justify-content: space-around;
+}
+
+.j-s__evenly {
+  justify-content: space-evenly;
+}
+
+.f-w {
+  width: 100%;
+}
+
+.f-h {
+  height: 100%;
+}
+
+.h-w {
+  width: 50%;
+}
+
+.h-h {
+  height: 50%;
+}
+
+.b {
+  font-weight: bold;
+}
+
+.f-s__b {
+  font-weight: 600;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.circled {
+  border-radius: 50vw;
+}
+
+/* Font sizes: */
+
+.f-ss {
+  font-size: 1.2rem;
+}
+
+.f-s {
+  font-size: 1.4rem;
+}
+
+.f-m {
+  font-size: 1.8rem;
+}
+
+.f-l {
+  font-size: 2.4;
+}
+
+/* Box Shadow*/
+.b-s {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Transition : */
+.t {
+  transition: all ease-in-out 0.3s;
+}
+
+/* Scale */
+.scale {
+  transform: scale(0.98);
+}
+
+/*Cursor*/
+.p {
+  cursor: pointer;
+}

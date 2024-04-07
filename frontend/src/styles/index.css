@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul {
+  list-style: none;
+}
+
+html {
+  font-size: 62.5% !important;
+}
+
+:root {
+  --clrs-black-: #333;
+  --clrs-white-bg: #f1f4f7;
+  --clrs-gradient: linear-gradient(to right, rgb(255, 214, 0), rgb(255, 122, 0), rgb(255, 0, 105), rgb(211, 0, 197), rgb(118, 56, 250));
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+  background-color: var(--clrs-white-bg);
+  min-height: 100vh;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+body::-webkit-scrollbar {
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* 
+Media Queries BreakPoints : 
+  - 320px — 480px: Mobile devices
+  - 481px — 768px: iPads, Tablets
+  - 769px — 1024px: Small screens, laptops
+  - 1025px — 1200px: Desktops, large screens
+  - 1201px and more —  Extra large screens, TV
+*/
