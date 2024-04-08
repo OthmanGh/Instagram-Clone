@@ -44,6 +44,10 @@
   justify-content: center;
 }
 
+.j-start {
+  justify-content: flex-start;
+}
+
 .j-s__between {
   justify-content: space-between;
 }

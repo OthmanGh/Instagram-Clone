@@ -61,8 +61,7 @@ body {
   scroll-behavior: smooth;
   background-color: var(--clrs-white-bg);
   min-height: 100vh;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  margin: 0.7rem 2rem 1.5rem 2rem;
 }
 
 body::-webkit-scrollbar {

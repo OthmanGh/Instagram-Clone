@@ -1,30 +1,34 @@
 .auth_container {
-  margin: 0 auto;
+  margin: 3rem auto;
   gap: 1.5rem;
+  max-width: 360px;
+  width: 360px;
 }
 
 .auth_form_container {
   background-color: white;
-  max-width: 360px;
   text-align: center;
-  gap: 20px;
+  gap: 15px;
   border: 1px solid rgb(191, 191, 191);
-  padding: 2rem 4rem;
+  padding: 4rem 3rem;
+  width: 100%;
 }
 
 .auth_form_container h2 {
   font-size: 3rem;
+  margin-bottom: 2rem;
 }
 
 .paragraph {
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: gray;
   line-height: 1.28;
+  padding: 0;
 }
 
 .auth-btns {
-  padding: 0.7rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.7rem;
   width: 100%;
   margin-bottom: 0rem;
@@ -34,8 +38,12 @@
   background-color: #0095f6;
 }
 
+.split-div {
+  font-size: 1.35rem;
+}
+
 .split-div hr {
-  border: 1.2px solid rgb(176, 176, 176);
+  border: 1.2px solid rgba(176, 176, 176, 0.5);
   display: block;
 }
 
@@ -51,8 +59,9 @@
 }
 
 .inputs_container input {
-  padding: 1rem 1rem;
+  padding: 0.7rem 1rem;
   width: 100%;
+  font-size: 1.4rem;
   background-color: rgba(236, 235, 235, 0.4);
   border-radius: 3px solid rgb(191, 191, 191);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
@@ -75,10 +84,33 @@
   background-color: white;
   font-size: 1.4rem;
   border: 1px solid rgb(191, 191, 191);
+  color: black;
+  font-weight: 500;
 }
 
 .switch_container span {
   color: #0095f6;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.login_with_facebook {
+  width: 100%;
+  color: rgb(2, 50, 113);
+  font-weight: 500;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-bottom: 1.2rem;
+}
+
+.custom_facebook_icon {
+  margin-right: 10px;
+  font-size: 2rem !important;
+  color: rgb(2, 50, 113);
+}
+
+.forgot_password {
+  font-size: 1.3rem;
+  color: rgb(2, 50, 113);
   cursor: pointer;
 }
