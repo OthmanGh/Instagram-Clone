@@ -1,0 +1,21 @@
+.feed_container {
+  display: grid;
+  grid-template-columns: 250px 1fr 200px;
+}
+
+.sidebar_container {
+  background-color: white;
+  margin-left: -1.5rem;
+}
+
+.custom_sidebar_icon {
+  font-size: 30px;
+}
+
+.s_r_img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50vw;
+  border: 3px solid rgb(22, 98, 164);
+}

@@ -1,6 +1,6 @@
 .auth_container {
   margin: 3rem auto;
-  gap: 1.5rem;
+  gap: 3rem;
   max-width: 360px;
   width: 360px;
 }
@@ -113,4 +113,11 @@
   font-size: 1.3rem;
   color: rgb(2, 50, 113);
   cursor: pointer;
+}
+
+.error {
+  font-size: 1.2rem;
+  align-self: flex-start;
+  color: red;
+  font-weight: 600;
 }
