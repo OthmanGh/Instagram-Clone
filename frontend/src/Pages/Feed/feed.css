@@ -1,8 +1,9 @@
 .feed_container {
   display: grid;
-  grid-template-columns: 230px 700px 200px;
+  grid-template-columns: 230px 1fr 0.55fr;
   height: 100%;
-  gap: 10rem;
+  width: 100%;
+  column-gap: 3rem;
 }
 
 /* Sidebar*/
@@ -73,7 +74,7 @@
 /* Main */
 
 .main_content_container {
-  padding: 4rem 2rem;
+  padding: 5rem;
   gap: 1.5rem;
   width: 100%;
 }
@@ -199,4 +200,66 @@
 .comment_input::placeholder {
   font-weight: lighter;
   font-weight: 500;
+}
+
+/*Widget */
+
+.widget_container {
+  padding: 5rem;
+  gap: 2rem;
+}
+
+.user_info_container {
+  gap: 1.5rem;
+}
+
+.widget_profile_pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50vw;
+  border: 3px solid black;
+  object-fit: cover;
+}
+
+.user_info_container div:first-child {
+  gap: 1rem;
+}
+
+.user_info_container span {
+  font-size: 1.4rem;
+}
+
+.user_info_container span:last-child {
+  color: rgb(93, 93, 93);
+}
+
+.suggestions_container {
+  gap: 2rem;
+}
+
+.suggestions_container h3 {
+  font-size: 1.6rem;
+  color: gray;
+  font-weight: 600;
+}
+
+.suggestions_container div:first-of-type p {
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.switch_account {
+  color: rgb(63, 139, 232) !important;
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.switch_account:hover {
+  color: rgb(33, 81, 140) !important;
+}
+
+.suggested_users {
+  gap: 1.6rem;
 }
