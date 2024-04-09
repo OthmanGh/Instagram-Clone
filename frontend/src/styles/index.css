@@ -18,10 +18,9 @@ body {
 img,
 picture,
 video,
-canvas,
-svg {
+canvas {
   display: block;
-  max-width: 100%;
+  width: 100%;
 }
 
 input,
@@ -61,7 +60,7 @@ body {
   scroll-behavior: smooth;
   background-color: var(--clrs-white-bg);
   min-height: 100vh;
-  margin: 0.7rem 2rem 1.5rem 2rem;
+  /* margin: 0.7rem 2rem 1.5rem 2rem; */
 }
 
 body::-webkit-scrollbar {

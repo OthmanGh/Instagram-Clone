@@ -10,6 +10,7 @@ import { TbPhotoVideo } from 'react-icons/tb';
 import { LuMessageCircle } from 'react-icons/lu';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { CiSaveUp2 } from 'react-icons/ci';
+import { BsThreeDots } from 'react-icons/bs';
 
 export const HomeIcon = GoHomeFill;
 export const SearchIcon = IoIosSearch;
@@ -23,3 +24,4 @@ export const ReelIcon = TbPhotoVideo;
 export const CommentIcon = LuMessageCircle;
 export const ShareIcon = IoPaperPlaneSharp;
 export const SaveIcon = CiSaveUp2;
+export const DotsIcon = BsThreeDots;
