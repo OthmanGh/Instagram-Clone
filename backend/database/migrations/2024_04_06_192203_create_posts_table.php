@@ -6,29 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    // public function up(): void
-    // {
-    //     Schema::create('posts', function (Blueprint $table) {
-    //         $table->id();
-    //         $table->timestamps();
-    //     });
-    // }
-
-    // public function up(): void
-    // {
-    //     Schema::create('posts', function (Blueprint $t) {
-    //         $t->id('posts_id');
-    //         $t->string("caption");
-    //         $t->string("image");
-    //         $t->unsignedBigInteger('user_id');
-    //         $t->foreign('user_id')->references("id")->on('users');
-    //         $t->timestamps();
-    //     });
-    // }
-
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {

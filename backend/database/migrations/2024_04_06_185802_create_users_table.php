@@ -31,9 +31,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('full_name', 255)->nullable();
+            $table->string('username')->unique()->nullable();
             $table->string('email', 255)->unique()->index();
-            $table->string('profile_picture', 255)->nullable(); // Adjust the length as needed
+            $table->string('profile_picture', 255)->nullable();
             $table->string('password', 255);
             $table->string('bio', 255)->nullable();
             $table->timestamps();
