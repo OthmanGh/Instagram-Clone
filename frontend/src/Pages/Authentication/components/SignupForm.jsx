@@ -3,6 +3,8 @@ import Button from '../../../components/Button';
 import Split from './Split';
 import { useForm } from 'react-hook-form';
 
+const validator = require('./validator.js');
+
 function SignupForm() {
   const {
     register,
@@ -10,8 +12,8 @@ function SignupForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (inputsData) => {
-    console.log(inputsData);
+  const onSubmit = (userInputs) => {
+    console.log(userInputs);
   };
 
   return (
@@ -25,35 +27,27 @@ function SignupForm() {
 
       <fieldset className="inputs_container flex column">
         <input
+          {...register('email', {
+            required: 'Email is required',
+            validate: (email) => validator.email(email),
+          })}
           type="email"
           className="auth-inputs"
           placeholder="Email"
-          {...register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^\S+@\S+$/i,
-              message: 'Invalid email address',
-            },
-          })}
         />
-        {errors.email && <div className="error">{errors.email.message}</div>}
+
+        {errors.email && <div class="error">{errors.email.message}</div>}
 
         <input
+          {...register('username', {
+            required: 'Username is required',
+            validate: (username) => validator.username(username),
+          })}
           type="text"
           className="auth-inputs"
           placeholder="Username"
-          {...register('username', {
-            required: 'Username is required',
-            minLength: 3,
-            validate: (value) => {
-              if (value.minLength < 3) {
-                return 'Username must include at least 3 characters';
-              }
-
-              return true;
-            },
-          })}
         />
+
         {errors.username && <div className="error">{errors.username.message}</div>}
 
         <input
@@ -62,12 +56,11 @@ function SignupForm() {
           placeholder="Full Name"
           {...register('full_name', {
             required: 'Full Name is required',
-            minLength: {
-              value: 5,
-              message: 'Full Name must be at least 5 characters long',
-            },
+
+            validate: (full_name) => validator.full_name(full_name),
           })}
         />
+
         {errors.full_name && <div className="error">{errors.full_name.message}</div>}
 
         <input
@@ -76,12 +69,10 @@ function SignupForm() {
           placeholder="Password"
           {...register('password', {
             required: 'Password is required',
-            minLength: {
-              value: 8,
-              message: 'Password must be at least 8 characters long',
-            },
+            validate: (password) => validator.password(password),
           })}
         />
+
         {errors.password && <div className="error">{errors.password.message}</div>}
       </fieldset>
 

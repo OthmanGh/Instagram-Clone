@@ -1,45 +1,48 @@
-import React, { useState } from 'react';
-import InputField from '../../../components/InputField';
 import Button from '../../../components/Button';
 import Split from './Split';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { useForm } from 'react-hook-form';
 
-function LoginForm({ setCredentials, credentials }) {
-  const [isFormValid, setIsFormValid] = useState(false);
+const validator = require('./validator.js');
 
-  const checkFormValidity = () => {
-    const { emailNumber, password } = credentials;
-    if (emailNumber.trim() && password.trim()) {
-      setIsFormValid(true);
-    } else {
-      setIsFormValid(false);
-    }
-  };
+function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleInputChange = (field, value) => {
-    setCredentials({ ...credentials, [field]: value });
-    checkFormValidity();
-  };
-
-  const handleSubmit = () => {
-    if (isFormValid) {
-      console.log('Form submitted:', credentials);
-    } else {
-      console.log('Please fill all fields.');
-    }
+  const onSubmit = (userInputs) => {
+    console.log(userInputs);
   };
 
   return (
-    <div className="auth_form_container flex column a-center j-start">
+    <form className="auth_form_container flex column a-center j-start" onSubmit={handleSubmit(onSubmit)}>
       <h2>Instagram</h2>
 
       <fieldset className="inputs_container flex column">
-        <InputField type="text" placeholder="Mobile Number or Email" onChange={(e) => handleInputChange('emailNumber', e.target.value)} required={true} />
+        <input
+          {...register('email', {
+            required: 'Email is required',
+            validate: (email) => validator.email(email),
+          })}
+          type="email"
+          placeholder="Email"
+        />
+        {errors.email && <div className="error">{errors.email.message}</div>}
 
-        <InputField type="password" placeholder="password" onChange={(e) => handleInputChange('password', e.target.value)} required={true} />
+        <input
+          type="password"
+          placeholder="Password"
+          {...register('password', {
+            required: 'Password is required',
+            validate: (password) => validator.password(password),
+          })}
+        />
+        {errors.password && <div className="error">{errors.password.message}</div>}
       </fieldset>
 
-      <Button custom_class="auth-btns p t" text="Log in" bgColor="light-blue" textColor="white" disabled={!isFormValid} onClick={handleSubmit} />
+      <Button custom_class="auth-btns p t" text="Log in" bgColor="light-blue" textColor="white" />
 
       <Split />
 
@@ -47,7 +50,7 @@ function LoginForm({ setCredentials, credentials }) {
         <FacebookIcon className="custom_facebook_icon" /> Log in with facebook
       </p>
       <p className="forgot_password">Forgot password</p>
-    </div>
+    </form>
   );
 }
 
