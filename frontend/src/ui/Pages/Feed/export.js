@@ -11,6 +11,7 @@ import { LuMessageCircle } from 'react-icons/lu';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { CiSaveUp2 } from 'react-icons/ci';
 import { BsThreeDots } from 'react-icons/bs';
+import { IoAddOutline } from 'react-icons/io5';
 
 export const HomeIcon = GoHomeFill;
 export const SearchIcon = IoIosSearch;
@@ -25,3 +26,4 @@ export const CommentIcon = LuMessageCircle;
 export const ShareIcon = IoPaperPlaneSharp;
 export const SaveIcon = CiSaveUp2;
 export const DotsIcon = BsThreeDots;
+export const PostIcon = IoAddOutline;

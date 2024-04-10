@@ -263,3 +263,66 @@
 .suggested_users {
   gap: 1.6rem;
 }
+
+/* Profile Paeg*/
+.profile_container {
+  padding: 5rem;
+  margin: 0 auto;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 5rem;
+}
+
+.profile_img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50vw;
+  object-fit: cover;
+}
+
+.profile_user_info {
+  gap: 2rem;
+}
+
+.profile_header_container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.profile_user_info div:first-of-type p {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.profile_user_info div:first-of-type button {
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  background-color: rgb(226, 226, 226);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile_user_info div:first-of-type button:hover {
+  background-color: rgb(197, 197, 197);
+}
+
+.profile_user_info div:nth-of-type(2) {
+  gap: 2.5rem;
+  font-size: 1.65rem;
+}
+
+.profile_user_info div:nth-of-type(2) span {
+  font-weight: 600;
+}
+
+.profile_user_info div:last-of-type p {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.add_post_icon {
+  font-size: 5rem;
+}
