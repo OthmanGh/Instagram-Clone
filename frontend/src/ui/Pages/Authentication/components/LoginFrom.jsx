@@ -2,8 +2,7 @@ import Button from '../../../components/Button';
 import Split from './Split';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useForm } from 'react-hook-form';
-
-const validator = require('./validator.js');
+import { validator } from '../../../../core/tools/validator';
 
 function LoginForm() {
   const {

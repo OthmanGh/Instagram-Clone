@@ -1,12 +1,14 @@
 import React from 'react';
-import './styles/utilities.css';
-import './styles/index.css';
-import './styles/colors.css';
-import Authentication from './Pages/Authentication';
-import Feed from './Pages/Feed';
-import Content from './Pages/Feed/components/content';
-import Profile from './Pages/Feed/components/profile';
-import Widget from './Pages/Feed/components/widget';
+import './ui/styles/utilities.css';
+import './ui/styles/index.css';
+import './ui/styles/colors.css';
+
+import Authentication from './ui/Pages/Authentication';
+import Feed from './ui/Pages/Feed';
+
+import Content from './ui/Pages/Feed/components/content';
+import Profile from './ui/Pages/Feed/components/profile';
+import Widget from './ui/Pages/Feed/components/widget';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 

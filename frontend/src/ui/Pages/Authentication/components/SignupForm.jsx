@@ -2,8 +2,7 @@ import React from 'react';
 import Button from '../../../components/Button';
 import Split from './Split';
 import { useForm } from 'react-hook-form';
-
-const validator = require('./validator.js');
+import { validator } from '../../../../core/tools/validator';
 
 function SignupForm() {
   const {
@@ -13,7 +12,8 @@ function SignupForm() {
   } = useForm();
 
   const onSubmit = (userInputs) => {
-    console.log(userInputs);
+    try {
+    } catch (error) {}
   };
 
   return (

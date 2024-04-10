@@ -1,4 +1,4 @@
-const validator = {
+export const validator = {
   email: (email) => {
     if (!email.includes('@')) {
       return 'Email must include @';
@@ -72,5 +72,3 @@ const validator = {
     return true;
   },
 };
-
-module.exports = validator;
