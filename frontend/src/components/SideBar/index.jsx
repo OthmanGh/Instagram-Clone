@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css';
 import {
   HomeIcon,
   SearchIcon,
@@ -12,7 +13,7 @@ import {
   CommentIcon,
   ShareIcon,
   SaveIcon,
-} from '../export.js';
+} from './export';
 
 function Sidebar() {
   return (

@@ -1,50 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import InputField from '../../../components/InputField';
+import React from 'react';
 import Button from '../../../components/Button';
 import Split from './Split';
+import { useForm } from 'react-hook-form';
 
 function SignupForm() {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    fullName: '',
-    userName: '',
-    password: '',
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const [errors, setErrors] = useState({ email: '', password: '', userName: '', fullName: '' });
-
-  useEffect(() => {
-    const newErrors = {};
-    if (!credentials.email.includes('@')) {
-      newErrors.email = 'Invalid email';
-    } else {
-      newErrors.email = '';
-    }
-
-    if (credentials.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
-    } else {
-      newErrors.password = '';
-    }
-
-    setErrors(newErrors);
-  }, [credentials]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(credentials);
+  const onSubmit = (inputsData) => {
+    console.log(inputsData);
   };
 
   return (
-    <div className="auth_form_container flex column a-center j-start" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)} className="auth_form_container flex column a-center j-start">
       <h2>Instagram</h2>
       <p className="paragraph">Sign up to see photos and videos from your friends.</p>
 
@@ -53,17 +24,65 @@ function SignupForm() {
       <Split />
 
       <fieldset className="inputs_container flex column">
-        <InputField type="email" name="email" onChange={handleChange} placeholder="Email" required={true} />
-        {/* {errors.email && <p className="error">{errors.email}</p>} */}
+        <input
+          type="email"
+          className="auth-inputs"
+          placeholder="Email"
+          {...register('email', {
+            required: 'Email is required',
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: 'Invalid email address',
+            },
+          })}
+        />
+        {errors.email && <div className="error">{errors.email.message}</div>}
 
-        <InputField type="text" name="fullName" onChange={handleChange} placeholder="Full Name" required={true} />
-        {/* {errors.fullName && <p className="error">{errors.fullName}</p>} */}
+        <input
+          type="text"
+          className="auth-inputs"
+          placeholder="Username"
+          {...register('username', {
+            required: 'Username is required',
+            minLength: 3,
+            validate: (value) => {
+              if (value.minLength < 3) {
+                return 'Username must include at least 3 characters';
+              }
 
-        <InputField type="text" name="userName" onChange={handleChange} placeholder="Username" required={true} />
-        {/* {errors.userName && <p className="error">{errors.userName}</p>} */}
+              return true;
+            },
+          })}
+        />
+        {errors.username && <div className="error">{errors.username.message}</div>}
 
-        <InputField type="password" onChange={handleChange} name="password" placeholder="Password" required={true} />
-        {/* {errors.password && <p className="error">{errors.password}</p>} */}
+        <input
+          type="text"
+          className="auth-inputs"
+          placeholder="Full Name"
+          {...register('full_name', {
+            required: 'Full Name is required',
+            minLength: {
+              value: 5,
+              message: 'Full Name must be at least 5 characters long',
+            },
+          })}
+        />
+        {errors.full_name && <div className="error">{errors.full_name.message}</div>}
+
+        <input
+          type="password"
+          className="auth-inputs"
+          placeholder="Password"
+          {...register('password', {
+            required: 'Password is required',
+            minLength: {
+              value: 8,
+              message: 'Password must be at least 8 characters long',
+            },
+          })}
+        />
+        {errors.password && <div className="error">{errors.password.message}</div>}
       </fieldset>
 
       <p className="f-ss p_links">
@@ -86,11 +105,10 @@ function SignupForm() {
         <a href="https://privacycenter.instagram.com/policies/cookies/" target="_blank" rel="noopener noreferrer">
           Cookies Policy
         </a>
-        .
       </p>
 
       <Button custom_class="auth-btns p t" text="Sign up" bgColor="light-blue" textColor="white" />
-    </div>
+    </form>
   );
 }
 

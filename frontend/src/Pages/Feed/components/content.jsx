@@ -3,7 +3,7 @@ import RoundedImage from '../../../components/RoundedImg';
 import '../export.js';
 import { CommentIcon, DotsIcon, HeartIcon, SaveIcon, ShareIcon } from '../export.js';
 
-function MainContent() {
+function Content() {
   return (
     <main className="main_content_container flex column">
       <Header />
@@ -148,4 +148,4 @@ function Post({ imgSrc, profile_img_src, text, username }) {
   );
 }
 
-export default MainContent;
+export default Content;

@@ -18,7 +18,6 @@ class UserController extends Controller
     public function register(Request $request)
     {
         try {
-            // Data Validation
             $request->validate([
                 "full_name" => "required",
                 "username" => "required|unique:users",
@@ -26,9 +25,8 @@ class UserController extends Controller
                 "password" => "required",
             ]);
 
-            // Data Save
             $user =  User::create([
-                "full_name" => $request->name,
+                "full_name" => $request->full_name,
                 "username" => $request->username,
                 "email" => $request->email,
                 "password" => Hash::make($request->password),
@@ -36,7 +34,6 @@ class UserController extends Controller
 
             $token = JWTAuth::fromUser($user);
 
-            // Response: 
             return response()->json([
                 "status" => 200,
                 "message" => "User registered successfully",
@@ -64,7 +61,6 @@ class UserController extends Controller
                 "password" => "required"
             ]);
 
-            // JWTAuth and attempt
             $token = JWTAuth::attempt([
                 "email" => $request->email,
                 "password" => $request->password,
@@ -80,13 +76,11 @@ class UserController extends Controller
                 throw new \Exception("Invalid login details.");
             }
         } catch (\Illuminate\Validation\ValidationException $e) {
-            // Validation error occurred
             return response()->json([
                 "error" => $e->errors(),
                 "message" => "Validation failed. Please check your input.",
             ], 400);
         } catch (\Exception $e) {
-            // Other unexpected errors
             return response()->json([
                 "error" => $e->getMessage(),
                 "message" => "An error occurred during login.",
