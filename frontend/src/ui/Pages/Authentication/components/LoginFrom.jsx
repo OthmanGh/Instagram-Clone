@@ -3,6 +3,7 @@ import Split from './Split';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { useForm } from 'react-hook-form';
 import { validator } from '../../../../core/tools/validator';
+import { fetchData } from '../../../../core/tools/fetchAuth';
 
 function LoginForm() {
   const {
@@ -11,8 +12,8 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (userInputs) => {
-    console.log(userInputs);
+  const onSubmit = async (userInputs) => {
+    fetchData(userInputs, 'login', 'POST');
   };
 
   return (

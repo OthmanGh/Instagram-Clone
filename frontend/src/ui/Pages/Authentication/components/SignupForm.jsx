@@ -3,6 +3,7 @@ import Button from '../../../components/Button';
 import Split from './Split';
 import { useForm } from 'react-hook-form';
 import { validator } from '../../../../core/tools/validator';
+import { fetch, fetchData } from '../../../../core/tools/fetchAuth';
 
 function SignupForm() {
   const {
@@ -11,9 +12,8 @@ function SignupForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (userInputs) => {
-    try {
-    } catch (error) {}
+  const onSubmit = async (userInputs) => {
+    fetchData(userInputs, 'register', 'POST');
   };
 
   return (
