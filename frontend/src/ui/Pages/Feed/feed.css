@@ -325,13 +325,13 @@
 
 .post_icon_container {
   padding: 1.5rem 2rem;
-  background-color: rgb(181, 181, 181);
+  background-color: rgb(226, 226, 226);
   border-radius: 50vw;
   cursor: pointer;
 }
 
 .post_icon_container:hover {
-  background-color: rgb(213, 212, 212);
+  background-color: rgb(197, 197, 197);
 }
 
 .add_post_icon {
@@ -345,7 +345,7 @@
 }
 
 .add_post_popup {
-  gap: 3rem;
+  gap: 2.5rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -354,18 +354,27 @@
   background-color: #fff;
   padding: 6rem;
   border-radius: 8px;
+  width: 500px;
+}
+
+.add_post_popup fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.add_post_popup fieldset label {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .add_post_popup input {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   background-color: rgb(128, 128, 128, 0.25);
-  border-radius: 2px;
+  border-radius: 3px;
   outline: none;
-}
-
-.add_post_popup input:last-of-type {
-  cursor: pointer;
 }
 
 .add_post_popup button {
@@ -378,10 +387,17 @@
   text-transform: capitalize;
   font-weight: 600;
   transition: all 0.3s ease-in-out;
+  margin-top: 1.3rem;
 }
 
 .add_post_popup button:hover {
   background-color: rgb(9, 98, 153);
+}
+
+.add_post_popup label {
+  color: #333;
+  font-weight: 500;
+  font-size: 1.8rem;
 }
 
 .custom_close {
@@ -392,4 +408,29 @@
   cursor: pointer;
   font-weight: 600;
   padding: 0.2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.upload_image_container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #333;
+  color: #fff !important;
+  padding: 1rem 0.9rem;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 1.4rem !important;
+  align-self: center;
+  margin-top: -5px;
+  gap: 10px;
+}
+
+.upload_image_container:hover {
+  background-color: black;
 }

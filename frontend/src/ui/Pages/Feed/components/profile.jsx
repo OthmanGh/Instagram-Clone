@@ -1,12 +1,50 @@
 import React, { useState } from 'react';
-import { PostIcon } from '../export';
+import { PostIcon, EditIcon } from '../export';
 import Overlay from '../../../components/Overlay';
 import RoundedImage from '../../../components/RoundedImg';
 
 function Profile() {
   const [showAddPopup, setShowAddPopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [bio, setBio] = useState('bio...');
+  const [username, setUsername] = useState('username');
+  const [caption, setCaption] = useState('');
+  const [postImage, setPostImage] = useState('');
+  const [profileImage, setProfileImage] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZTCX8XqSIC1QUe5HyP7SJ5__Ms7DdpKtYw&s');
 
+  /* Post Popup */
+  const handleCaption = (e) => {
+    setCaption(e.target.value);
+  };
+
+  const handlePostImage = (e) => {
+    const file = e.target.files[0]; // array of files since we can add one or multiple images or files of type file
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPostImage(reader.result);
+    };
+
+    console.log(file);
+  };
+
+  const handlePostSubmit = () => {};
+
+  /* Profile Popup */
+  const handleProfileImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setProfileImage(reader.result);
+    };
+  };
+
+  const handleBioChange = (e) => {};
+
+  const handleUsernameChange = (e) => {};
+
+  /* Toggling Popups */
   const toggleAddPopup = () => {
     setShowAddPopup(!showAddPopup);
   };
@@ -17,27 +55,30 @@ function Profile() {
 
   return (
     <div className="profile_container">
-      <ProfileHeader onEditProfile={toggleEditPopup} />
+      <ProfileHeader onEditProfile={toggleEditPopup} profileImage={profileImage} username={username} bio={bio} />
+
       <div className="post_icon_container t" onClick={toggleAddPopup}>
         <PostIcon className="add_post_icon" />
       </div>
+
       <hr className="separator_profile" />
-      {showAddPopup && <AddPostPopup onClose={toggleAddPopup} />}
-      {showEditPopup && <EditProfilePopup onClose={toggleEditPopup} />}
+      {showAddPopup && <AddPostPopup onClose={toggleAddPopup} onCaption={handleCaption} onPostImage={handlePostImage} onSubmit={handlePostSubmit} />}
+
+      {showEditPopup && (
+        <EditProfilePopup onClose={toggleEditPopup} onProfileImage={handleProfileImage} onUsername={handleUsernameChange} onBio={handleBioChange} />
+      )}
     </div>
   );
 }
 
-function ProfileHeader({ onEditProfile }) {
+function ProfileHeader({ onEditProfile, profileImage, username, bio }) {
   return (
     <div className="profile_header_container flex a-center j-s__between">
-      <RoundedImage
-        src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww"
-        imgClass="profile_img"
-      />
+      <RoundedImage src={profileImage} imgClass="profile_img" />
+
       <div className="flex profile_user_info column">
         <div className="flex a-center j-s__between">
-          <p>username</p>
+          <p>{username}</p>
           <button onClick={onEditProfile}>Edit profile</button>
         </div>
         <div className="flex a-center j-s__between">
@@ -54,19 +95,31 @@ function ProfileHeader({ onEditProfile }) {
         <div>
           <p>full name</p>
         </div>
-        <p className="bio">bio...</p>
+        <p className="bio">{bio}</p>
       </div>
     </div>
   );
 }
 
-function AddPostPopup({ onClose }) {
+function AddPostPopup({ onClose, onCaption, onPostImage, onSubmit }) {
   return (
     <>
       <div className="flex a-center column j-center add_post_popup">
-        <input type="text" placeholder="Caption..." />
-        <input type="file" />
-        <button className="submit">add Post</button>
+        <fieldset>
+          <label>Add your caption:</label>
+          <input type="text" id="caption" placeholder="Caption..." onChange={onCaption} />
+        </fieldset>
+
+        <fieldset>
+          <label htmlFor="upload_image" className="upload_image_container t">
+            Upload image
+            <EditIcon className="custom_edit_icon" />
+          </label>
+          <input type="file" onChange={(e) => onPostImage(e)} name="post_image" id="upload_image" accept="image/*" className="hidden" />
+        </fieldset>
+        <button className="submit" onClick={onSubmit}>
+          add Post
+        </button>
         <p className="custom_close" onClick={onClose}>
           x
         </p>
@@ -76,36 +129,31 @@ function AddPostPopup({ onClose }) {
   );
 }
 
-function EditProfilePopup({ onClose }) {
-  const [username, setUsername] = useState('');
-  const [bio, setBio] = useState('');
-  const [image, setImage] = useState(null);
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
-
+function EditProfilePopup({ onClose, onSubmit, onProfileImage, onBio, onUsername, username, bio }) {
   return (
     <>
       <div className="flex a-center column j-center add_post_popup">
-        <label>Edit username</label>
-        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
+        <fieldset>
+          <label>Edit username</label>
+          <input type="text" placeholder="Username" value={username} onChange={onUsername} />
+        </fieldset>
 
-        <label>Edit your bio</label>
-        <input type="text" placeholder="Bio..." value={bio} onChange={handleBioChange} />
+        <fieldset>
+          <label>Edit your bio</label>
+          <input type="text" placeholder="Bio..." value={bio} onChange={onBio} />
+        </fieldset>
 
-        <label htmlFor="profile_img">Modify Image</label>
-        <input id="profile_img" type="file" onChange={handleImageChange} />
+        <fieldset>
+          <label htmlFor="profile_img" className="upload_image_container  t">
+            Upload image
+            <EditIcon className="custom_edit_icon" />
+          </label>
+          <input id="profile_img" type="file" onChange={onProfileImage} className="hidden" />
+        </fieldset>
 
-        <button className="submit">Save Changes</button>
+        <button className="submit" onClick={onSubmit}>
+          Save Changes
+        </button>
         <p className="custom_close" onClick={onClose}>
           x
         </p>

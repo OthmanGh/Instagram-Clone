@@ -12,6 +12,7 @@ import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { CiSaveUp2 } from 'react-icons/ci';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoAddOutline } from 'react-icons/io5';
+import { MdEdit } from 'react-icons/md';
 
 export const HomeIcon = GoHomeFill;
 export const SearchIcon = IoIosSearch;
@@ -27,3 +28,4 @@ export const ShareIcon = IoPaperPlaneSharp;
 export const SaveIcon = CiSaveUp2;
 export const DotsIcon = BsThreeDots;
 export const PostIcon = IoAddOutline;
+export const EditIcon = MdEdit;
