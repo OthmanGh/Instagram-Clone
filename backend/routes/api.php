@@ -20,3 +20,8 @@ Route::middleware('cors')->group(function () {
         Route::get('posts', [FeedController::class, 'getPosts']);
     });
 });
+
+// Route::group(['prefix' => 'auth', 'middleware' => 'cors'], function () {
+//     Route::post('/login', 'UserController');
+//     Route::post('/register', 'UserController');
+// });

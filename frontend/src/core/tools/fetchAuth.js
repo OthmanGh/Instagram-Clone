@@ -11,22 +11,21 @@ export const fetchData = async (inputsObject, path, method) => {
     console.log(httpMethod);
     console.log(url);
 
-    // const req = await fetch(url, {
-    //   method: httpMethod,
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(inputsObject),
-    // });
+    const req = await fetch(url, {
+      method: httpMethod,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputsObject),
+    });
 
-    // if (!req.ok) {
-    //   throw new Error(`HTTP error! Status: ${req.status}`);
-    // }
+    if (!req.ok) {
+      throw new Error(`HTTP error! Status: ${req.status}`);
+    }
 
-    // const res = await req.json();
+    const res = await req.json();
 
-    // console.log(res);
-    // return res;
+    console.log(res);
   } catch (error) {
     console.error('Error occurred:', error);
     throw error;
