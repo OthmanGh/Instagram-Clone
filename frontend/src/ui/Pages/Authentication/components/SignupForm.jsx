@@ -3,17 +3,40 @@ import Button from '../../../components/Button';
 import Split from './Split';
 import { useForm } from 'react-hook-form';
 import { validator } from '../../../../core/tools/validator';
-import { fetch, fetchData } from '../../../../core/tools/fetchAuth';
+import { fetchData } from '../../../../core/tools/fetchAuth';
+import { useNavigate } from 'react-router-dom';
 
 function SignupForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const onSubmit = async (userInputs) => {
-    fetchData(userInputs, 'register', 'POST');
+    try {
+      const data = await fetchData(userInputs, 'register', 'POST');
+
+      if (data.status === 200) {
+        localStorage.setItem('token', data.token);
+        navigate('/feed');
+        return;
+      }
+
+      const error = JSON.parse(data);
+
+      throw error;
+    } catch (e) {
+      const { message, error } = e;
+      console.log(error);
+      console.log(message);
+
+      setError('root', {
+        message: error.email || error.username,
+      });
+    }
   };
 
   return (
@@ -98,7 +121,9 @@ function SignupForm() {
         </a>
       </p>
 
-      <Button custom_class="auth-btns p t" text="Sign up" bgColor="light-blue" textColor="white" />
+      <Button isSubmitting={isSubmitting} custom_class="auth-btns p t" text="Sign up" bgColor="light-blue" textColor="white" />
+
+      {errors.root && <div className="error">{errors.root.message}</div>}
     </form>
   );
 }

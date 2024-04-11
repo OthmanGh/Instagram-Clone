@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../../../components/Button';
 import Split from './Split';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -8,20 +9,35 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
-  const onSubmit = (userInputs) => {
-    fetchData(userInputs, 'login', 'POST').then((data) => {
+  const onSubmit = async (userInputs) => {
+    try {
+      const data = await fetchData(userInputs, 'login', 'POST');
+
       if (data.status === 200) {
         localStorage.setItem('token', data.token);
         navigate('/feed');
+        return;
       }
-    });
+
+      const error = JSON.parse(data);
+
+      throw error;
+    } catch (e) {
+      const { message, error } = e;
+      console.log(error);
+      console.log(message);
+
+      setError('root', {
+        message,
+      });
+    }
   };
 
   return (
@@ -51,6 +67,8 @@ function LoginForm() {
       </fieldset>
 
       <Button custom_class="auth-btns p t" text="Log in" bgColor="light-blue" textColor="white" />
+
+      {errors.root && <div className="error">{errors.root.message}</div>}
 
       <Split />
 

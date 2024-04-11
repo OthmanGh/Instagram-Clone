@@ -7,10 +7,6 @@ export const fetchData = async (inputsObject, path, method) => {
     const url = `${API_BASE_URL}/${path}`;
     const httpMethod = requestMethod[method];
 
-    console.log(inputsObject);
-    console.log(httpMethod);
-    console.log(url);
-
     const req = await fetch(url, {
       method: httpMethod,
       headers: {
@@ -20,14 +16,13 @@ export const fetchData = async (inputsObject, path, method) => {
     });
 
     if (!req.ok) {
-      throw new Error(`HTTP error! Status: ${req.status}`);
+      const errorMessage = await req.text();
+      return errorMessage;
     }
 
     const res = await req.json();
-
     return res;
   } catch (error) {
-    console.error('Error occurred:', error);
-    throw error;
+    throw error.message;
   }
 };
