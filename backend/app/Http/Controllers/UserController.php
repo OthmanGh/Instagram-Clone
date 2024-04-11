@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
 
-use App\Models\CoinRequest;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Facades\Auth;
 
 
 
@@ -22,20 +20,23 @@ class UserController extends Controller
                 "full_name" => "required",
                 "username" => "required|unique:users",
                 "email" => "required|email|unique:users",
-                "password" => "required",
+                "password" => "required|string|min:8",
             ]);
+
+            $defaultProfilePicture = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZTCX8XqSIC1QUe5HyP7SJ5__Ms7DdpKtYw&s';
 
             $user =  User::create([
                 "full_name" => $request->full_name,
                 "username" => $request->username,
                 "email" => $request->email,
                 "password" => Hash::make($request->password),
+                "profile_picture" => $defaultProfilePicture,
             ]);
 
             $token = JWTAuth::fromUser($user);
 
             return response()->json([
-                "status" => 200,
+                "status" => 201,
                 "message" => "User registered successfully",
                 "token" => $token,
             ]);
@@ -110,7 +111,7 @@ class UserController extends Controller
 
     public function getUser()
     {
-        $user = auth()->user();
+        $user = Auth()->user();
         return response()->json([
             "user" => $user,
         ]);
