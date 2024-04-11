@@ -8,13 +8,13 @@ use Faker\Factory as Faker;
 
 class FollowersTableSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         $faker = Faker::create();
 
         for ($i = 0; $i < 6; $i++) {
             Follower::create([
-                "user_id" => $faker->numberBetween(1, 3),
+                'user_id' => $faker->numberBetween(1, 6),
             ]);
         }
     }

@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use App\Models\Post;
+use Faker\Factory as Faker;
 
 class PostsTableSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         $faker = Faker::create();
 
@@ -16,7 +16,7 @@ class PostsTableSeeder extends Seeder
             Post::create([
                 'caption' => $faker->sentence,
                 'image' => $faker->imageUrl(),
-                'user_id' => $faker->numberBetween(1, 3),
+                'user_id' => $faker->numberBetween(1, 6),
             ]);
         }
     }

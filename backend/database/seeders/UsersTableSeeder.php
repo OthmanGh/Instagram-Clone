@@ -8,17 +8,18 @@ use Faker\Factory as Faker;
 
 class UsersTableSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             User::create([
-                "name" => $faker->name,
-                "email" => $faker->unique()->safeEmail,
-                "password" => bcrypt('secret'),
-                "profile_picture" => null,
-                "bio" => $faker->paragraph,
+                'full_name' => $faker->name,
+                'username' => $faker->userName,
+                'email' => $faker->unique()->safeEmail,
+                'password' => bcrypt('password'),
+                'profile_picture' => $faker->imageUrl,
+                'bio' => $faker->paragraph,
             ]);
         }
     }
