@@ -35,7 +35,7 @@ function LoginForm() {
       console.log(message);
 
       setError('root', {
-        message,
+        message: error,
       });
     }
   };
