@@ -7,22 +7,26 @@ export const fetchData = async (inputsObject, path, method) => {
     const url = `${API_BASE_URL}/${path}`;
     const httpMethod = requestMethod[method];
 
-    const req = await fetch(url, {
-      method: httpMethod,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputsObject),
-    });
+    console.log(inputsObject);
+    console.log(httpMethod);
+    console.log(url);
 
-    if (!req.ok) {
-      throw new Error(`HTTP error! Status: ${req.status}`);
-    }
+    // const req = await fetch(url, {
+    //   method: httpMethod,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(inputsObject),
+    // });
 
-    const res = await req.json();
+    // if (!req.ok) {
+    //   throw new Error(`HTTP error! Status: ${req.status}`);
+    // }
 
-    console.log(res);
-    return res;
+    // const res = await req.json();
+
+    // console.log(res);
+    // return res;
   } catch (error) {
     console.error('Error occurred:', error);
     throw error;
