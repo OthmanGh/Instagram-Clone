@@ -1,6 +1,6 @@
 import { requestMethod } from '../enums/requestMethods.js';
 
-const API_BASE_URL = 'http://127.0.0.1/api';
+const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
 export const fetchData = async (inputsObject, path, method) => {
   try {
@@ -25,7 +25,7 @@ export const fetchData = async (inputsObject, path, method) => {
 
     const res = await req.json();
 
-    console.log(res);
+    return res;
   } catch (error) {
     console.error('Error occurred:', error);
     throw error;

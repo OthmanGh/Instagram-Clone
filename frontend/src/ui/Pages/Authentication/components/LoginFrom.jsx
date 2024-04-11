@@ -4,16 +4,24 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import { useForm } from 'react-hook-form';
 import { validator } from '../../../../core/tools/validator';
 import { fetchData } from '../../../../core/tools/fetchAuth';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (userInputs) => {
-    fetchData(userInputs, 'login', 'POST');
+  const onSubmit = (userInputs) => {
+    fetchData(userInputs, 'login', 'POST').then((data) => {
+      if (data.status === 200) {
+        localStorage.setItem('token', data.token);
+        navigate('/feed');
+      }
+    });
   };
 
   return (
